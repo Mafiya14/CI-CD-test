@@ -25,9 +25,47 @@ jobs:
       - name: Run tests
         uses: game-ci/unity-test-runner@v4
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.<?xml version="1.0" encoding="UTF-8"?><root><TimeStamp Value="eq5Ml6Qt/MOW0Q=="/>
+    <License id="Terms">
+        <MachineBindings>
+            <Binding Key="1" Value="00326-10000-00000-AA448"/>
+            <Binding Key="2" Value="00523_58_811097_0A.F"/>
+            <Binding Key="4" Value="U3lzdGVtIFNlcmlhbCBOdW1iZXI="/>
+            <Binding Key="5" Value="18:31:bf:21:da:e8"/>
+        </MachineBindings>
+        <MachineID Value="5TuJdFyCV48DJT7EGvbjfwIcq+E="/>
+        <SerialHash Value="b6d1e15831d35c39a8febd308a58ea6e4294a2be"/>
+        <Features>
+            <Feature Value="33"/>
+            <Feature Value="1"/>
+            <Feature Value="12"/>
+            <Feature Value="2"/>
+            <Feature Value="24"/>
+            <Feature Value="3"/>
+            <Feature Value="36"/>
+            <Feature Value="17"/>
+            <Feature Value="19"/>
+            <Feature Value="62"/>
+        </Features>
+        <DeveloperData Value="AQAAAEY0LVBIUkEtUk5FSi1KNlYzLUdaNEUtVEg5Sg=="/>
+        <SerialMasked Value="F4-PHRA-RNEJ-J6V3-GZ4E-XXXX"/>
+        <StartDate Value="2022-03-03T00:00:00"/>
+        <UpdateDate Value="2024-04-23T09:58:58"/>
+        <InitialActivationDate Value="2022-03-03T14:59:42"/>
+        <LicenseVersion Value="6.x"/>
+        <ClientProvidedVersion Value="2017.2.0"/>
+        <AlwaysOnline Value="false"/>
+        <Entitlements>
+            <Entitlement Ns="unity_editor" Tag="UnityPersonal" Type="EDITOR" ValidTo="9999-12-31T00:00:00"/>
+            <Entitlement Ns="unity_editor" Tag="DarkSkin" Type="EDITOR_FEATURE" ValidTo="9999-12-31T00:00:00"/>
+        </Entitlements>
+    </License><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#Terms"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>LfkED27hDS/agQqFaRw9rjqFUNI=</DigestValue></Reference></SignedInfo><SignatureValue>IUxn1zuzIjqZxKfRN3PzUmhKr1K1s4TvrVBStNDvshcO9Af6lCqudqNNVtMBO+Xjxvu/RriMe2FO
+6k19NnBgIAyAXhVGJPIht+nMVWAlH7zNCXkTYZ+DnQphO9pbI8x5ETV5NafkSDFMJCzsjX7k16Xe
+TIM0SRv2AqAJk8Fw2jKmlqBsTFUsR9I7TFgBj0RaGtRiWvJvbOoVgyU7/5Sqw5xHtgsxSpldssFk
+oWHL/ez9OEGPyHj+ToMFNjo6Ly+toasl2SUqQHRY9vATrO14+Zrt+sx6261MSPaseBHpaW7EZCDx
+OArBZFQF/xWb8oaLx9zpHMdp28/YXM4rXT0bgw==</SignatureValue></Signature></root> }}
+          UNITY_EMAIL: ${{ secrets.mak020614@mail.ru }}
+          UNITY_PASSWORD: ${{ secrets.147536982aB!? }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
