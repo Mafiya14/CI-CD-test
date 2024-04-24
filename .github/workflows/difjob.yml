@@ -7,8 +7,8 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
 jobs:
-  tests:
-    name: Tests
+  checkoutAndCache:
+    name: Checkout and Cache
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -18,7 +18,8 @@ jobs:
           lfs: true
 
       # Cache
-      - uses: actions/cache@v3
+      - name: Cache
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -26,23 +27,28 @@ jobs:
             Library-
 
       # Test
-      - name: Run tests from Unity Test runner
-        uses: game-ci/unity-test-runner@v4.1.1
-       
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          testMode: PlayMode
+  tests:
+       name: Run tests from Unity Test runner
+       runs-on: ubuntu-latest
+       steps:
+        - name: unityTestRunner
+          uses: game-ci/unity-test-runner@v4.1.1
+          with:
+           githubToken: ${{ secrets.GITHUB_TOKEN }}
+           testMode: PlayMode
 
       # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v4
-        
-        with:
-          targetPlatform: Android, StandaloneWindows
-            
-
+  build:
+        name: Build project
+        runs-on: ubuntu-latest
+        steps:
+         - name: build
+           uses: game-ci/unity-builder@v4
+           with:
+            targetPlatform: Android, StandaloneWindows
       # Output
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Build
-          path: build
+         - name: output
+           uses: actions/upload-artifact@v3
+           with:
+            name: Build
+            path: build
