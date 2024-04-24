@@ -1,7 +1,7 @@
 name: Jobs
 
 on: 
-  push: { branches: [without-logs-and-library] }
+  push: { branches: [main] }
   
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
