@@ -7,8 +7,8 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
 jobs:
-  tests:
-    name: Checkout and Cache, Tests
+  Cache:
+    name: Cache
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -25,10 +25,17 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
       # Test
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: unityTestRunner
         uses: game-ci/unity-test-runner@v4.1.1
+        
         env:
             UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
             UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -42,6 +49,9 @@ jobs:
         name: Build project
         runs-on: ubuntu-latest
         steps:
+         - name: Checkout repository
+           uses: actions/checkout@v4
+           
          - name: build
            uses: game-ci/unity-builder@v4
            env:
