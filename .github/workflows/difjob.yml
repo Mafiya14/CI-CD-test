@@ -44,21 +44,27 @@ jobs:
            testMode: PlayMode
 
       # Build
-  build:
-        name: Build project
+  buildForAllSupportedPlatforms:
+        name: Build for ${{ matrix.targetPlatform }}
         runs-on: ubuntu-latest
+        strategy:
+          fail-fast: false
+          matrix:
+            targetPlatform:
+              - StandaloneWindows # Build a Windows standalone.
+              - Android # Build an Android .apk standalone app.
+         
         steps:
          - name: Checkout repository
            uses: actions/checkout@v4
            
          - name: build
            uses: game-ci/unity-builder@v4
-          
            with:
-            targetPlatform: Android
+            targetPlatform: ${{ matrix.targetPlatform }}
       # Output
          - name: output
            uses: actions/upload-artifact@v3
            with:
-            name: Build
-            path: build
+            name: Build-${{ matrix.targetPlatform }}
+            path: build/${{ matrix.targetPlatform }}
