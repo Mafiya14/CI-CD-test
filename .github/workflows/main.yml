@@ -22,7 +22,7 @@ jobs:
             Library-
 
       # Test
-      - name: Unity - Test runner
+      - name: Run tests from Unity Test runner
         uses: game-ci/unity-test-runner@v4.1.1
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
