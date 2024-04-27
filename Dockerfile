@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Скачиваем и устанавливаем Unity Editor
-ADD https://download.unity3d.com/download_unity/XXXXX/unity-editor_amd64.deb /tmp/unity.deb
+ADD https://download.unity3d.com/download_unity/2022.3.7f1/unity-editor_amd64.deb /tmp/unity.deb
 RUN gdebi -n /tmp/unity.deb && \
     rm /tmp/unity.deb
 
