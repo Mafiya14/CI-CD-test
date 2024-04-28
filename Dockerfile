@@ -3,14 +3,14 @@ FROM ubuntu:20.04
 
 # Установите необходимые зависимости для работы Unity Hub и X11 (для xvfb)
 RUN apt-get update && apt-get install -y \
-    wget \
-    libgtk-3-0 \
-    libnss3 \
-    libasound2 \
-    libgconf-2-4 \
-    libarchive13 \
-    libxtst6 \
-    libxss1 \
+   # wget \
+   # libgtk-3-0 \
+   # libnss3 \
+   # libasound2 \
+   # libgconf-2-4 \
+   # libarchive13 \
+   # libxtst6 \
+   # libxss1 \
     xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
