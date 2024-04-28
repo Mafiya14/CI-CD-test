@@ -1,22 +1,30 @@
 # Используем официальный образ Ubuntu как базовый
 FROM ubuntu:20.04
 
-# Устанавливаем необходимые зависимости
+# Установите необходимые зависимости для работы Unity Hub и X11 (для xvfb)
 RUN apt-get update && apt-get install -y \
     wget \
-    libgtk2.0-0 \
-    libxtst6 \
-    libxss1 \
-    libgconf-2-4 \
+    libgtk-3-0 \
     libnss3 \
     libasound2 \
+    libgconf-2-4 \
+    libarchive13 \
+    libxtst6 \
+    libxss1 \
     xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Скачиваем и устанавливаем Unity Editor
-ADD https://download.unity3d.com/download_unity/2022.3.7f1/unity-editor_amd64.deb /tmp/unity.deb
-RUN gdebi -n /tmp/unity.deb && \
-    rm /tmp/unity.deb
+# Скопируйте Unity Hub AppImage в контейнер
+COPY unityhub.AppImage /opt/unityhub.AppImage
+
+# Сделайте Unity Hub исполняемым
+RUN chmod +x /opt/unityhub.AppImage
+
+# Определите рабочую директорию
+WORKDIR /opt
+
+# Запуск Unity Hub (Запуск в режиме командной строки может потребовать дополнительной настройки)
+CMD ["xvfb-run", "--auto-servernum", "--server-args='-screen 0 1024x768x24'", "/opt/unityhub.AppImage"]
 
 # Копирование содержимого Unity проекта в /app внутри образа
 COPY . /app
