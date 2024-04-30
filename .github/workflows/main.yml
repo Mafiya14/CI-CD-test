@@ -69,8 +69,8 @@ jobs:
      #      with:
      #       targetPlatform: ${{ matrix.targetPlatform }}
       # Output
-         - name: output
-           uses: actions/upload-artifact@v3
-           with:
-            name: Build-${{ matrix.targetPlatform }}
-            path: build/${{ matrix.targetPlatform }}
+      #   - name: output
+      #     uses: actions/upload-artifact@v3
+       #    with:
+        #    name: Build-${{ matrix.targetPlatform }}
+         #   path: build/${{ matrix.targetPlatform }}
