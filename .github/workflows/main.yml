@@ -34,7 +34,7 @@ jobs:
            testMode: PlayMode
       # Storing Test Results
       - name: Storing Test Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: Test results
