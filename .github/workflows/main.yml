@@ -30,7 +30,7 @@ jobs:
       - name: unityTestRunner
         uses: game-ci/unity-test-runner@v4.1.1
         with:
-           #githubToken: ${{ secrets.GITHUB_TOKEN }}
+           githubToken: ${{ secrets.GITHUB_TOKEN }}
            testMode: PlayMode
       # Storing Test Results
       #- name: Storing Test Results
