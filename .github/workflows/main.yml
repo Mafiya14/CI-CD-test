@@ -44,7 +44,8 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
         with:
-          name: NUnit Tests            # Name of the check run which will be created
+          artifact: /Test-results-(.*)/
+          name: Test report $1            # Name of the check run which will be created
           #path: artifacts    # Path to test results
           reporter: dotnet-trx       # Format of test results
       # Build
