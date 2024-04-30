@@ -12,10 +12,14 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    - name: Test Report
     - uses: dorny/test-reporter@v1
       with:
         artifact: test-results            # artifact name
         name: NUnit Tests                  # Name of the check run which will be created
-        path: 'playmode.log'                     # Path to test results (inside artifact .zip)
+        path: '*.*'                     # Path to test results (inside artifact .zip)
         reporter: dotnet-trx              # Format of test results
