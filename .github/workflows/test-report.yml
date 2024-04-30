@@ -1,0 +1,23 @@
+name: 'Test Report'
+on:
+  workflow_run:
+    workflows: ['main']                     # runs after 'main' workflow
+    types:
+      - completed
+permissions:
+  contents: read
+  actions: read
+  checks: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      with:
+        artifact: test-results            # artifact name
+        name: NUnit Tests                  # Name of the check run which will be created
+        path: '*.*'                     # Path to test results (inside artifact .zip)
+        reporter: dotnet-trx              # Format of test results
