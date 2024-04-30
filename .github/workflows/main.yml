@@ -33,19 +33,19 @@ jobs:
            githubToken: ${{ secrets.GITHUB_TOKEN }}
            testMode: PlayMode
       # Storing Test Results
-      #- name: Storing Test Results
-      #  uses: actions/upload-artifact@v3
-      #  if: always()
-      #  with:
-       #   name: Test results
-       #   path: artifacts
+      - name: Storing Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test results
+          path: artifacts
       # Test Report
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
         with:
           #artifact: /Test-results-(.*)/
-          name: Test report $1            # Name of the check run which will be created
+          name: Test report             # Name of the check run which will be created
           path: artifacts/playmode-results.xml    # Path to test results
           reporter: dotnet-trx       # Format of test results
       # Build
