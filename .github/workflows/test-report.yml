@@ -12,6 +12,7 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - uses: dorny/test-reporter@v1
       with:
         artifact: test-results            # artifact name
