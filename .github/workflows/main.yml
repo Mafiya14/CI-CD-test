@@ -37,7 +37,7 @@ jobs:
       - name: Upload Test Result
         uses: actions/upload-artifact@v4
         with:
-          name: Test Result
+          name: Test-Result
           path: reports/TestResult
 
   #Test Report
@@ -52,15 +52,15 @@ jobs:
       - name: Use Test Result Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Test Result
+          name: Test-Result
           path: reports/TestResult
       #Test Report
       - name: Test Report
         uses: phoenix-actions/test-reporting@v8
         if: success() || failure()    # run this step even if previous step failed
         with:
-          name: NUnit Tests            # Name of the check run which will be created
-          path: reports/TestResult    # Path to test results
+          name: Test-Result           # Name of the check run which will be created
+          path: reports/*.xml    # Path to test results
           reporter: dotnet-trx        # Format of test results
   
   # Build
@@ -98,7 +98,7 @@ jobs:
       #Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
-      #Dwonload Build Artifact
+      #Download Build Artifact
       - name: Use WebGL Artifact
         uses: actions/download-artifact@v4
         with:
