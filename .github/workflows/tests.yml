@@ -1,7 +1,7 @@
 name: Jobs
 
 on: 
-  push: { branches: [deploy] }
+  push: { branches: [main] }
   
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -61,54 +61,3 @@ jobs:
           name: Test-Results         # Name of the check run which will be created
           path: reports/test-results/playmode-results.xml   # Path to test results
           reporter: dotnet-trx        # Format of test results
-  
-  # Build
-  buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
-    runs-on: ubuntu-latest
-    needs: tests
-    strategy:
-      fail-fast: false
-      matrix:
-        targetPlatform:
-         # - StandaloneWindows # Build a Windows standalone.
-         # - Android # Build an Android .apk standalone app.
-          - WebGL # WebGL.
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: build
-        uses: game-ci/unity-builder@v4
-        with:
-          targetPlatform: ${{ matrix.targetPlatform }}
-    # Output
-      - name: output
-        uses: actions/upload-artifact@v4
-        with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
-  
-  # Upload to itch.io
-  UploadToItchIo:
-    name: Upload to itch.io
-    runs-on: ubuntu-latest
-    needs: buildForAllSupportedPlatforms
-    steps:
-      #Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      #Download Build Artifact
-      - name: Use WebGL Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: Build-WebGL
-          path: build/WebGL
-      #Push to Itch.io with Butler
-      - name: Butler Push
-        uses: yeslayla/butler-publish-itchio-action@v1.0.3
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: HTML5 / Playable in browser
-          ITCH_GAME: ci-cd-upload-test
-          ITCH_USER: Mafiya
-          PACKAGE: build/WebGL
