@@ -33,6 +33,20 @@ jobs:
         with:
            githubToken: ${{ secrets.GITHUB_TOKEN }}
            testMode: PlayMode
+      #Upload Test Result
+      - name: Upload Test Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test Result
+          path: reports/TestResult
+      #Test Report
+      - name: Test Report
+        uses: phoenix-actions/test-reporting@v8
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: NUnit Tests            # Name of the check run which will be created
+          path: reports/TestResult    # Path to test results
+          reporter: dotnet-trx        # Format of test results
   # Build
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
@@ -42,8 +56,9 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneWindows # Build a Windows standalone.
-          - Android # Build an Android .apk standalone app.
+         # - StandaloneWindows # Build a Windows standalone.
+         # - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,13 +78,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: buildForAllSupportedPlatforms
     steps:
+      #
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Use StandaloneWindows Artifact
+      #
+      - name: Use WebGL Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Build-StandaloneWindows
-          path: build/StandaloneWindows
+          name: Build-WebGL
+          path: build/WebGL
+      #
       - name: Butler Push
         uses: yeslayla/butler-publish-itchio-action@v1.0.3
         env:
@@ -77,5 +95,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: ci-cd-upload-test
           ITCH_USER: Mafiya
-          PACKAGE: build/StandaloneWindows
+          PACKAGE: build/WebGL
             
