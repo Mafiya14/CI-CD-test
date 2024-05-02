@@ -70,5 +70,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: ci-cd-upload-test
           ITCH_USER: Mafiya
-          PACKAGE: artifacts/StandaloneWindows
+          PACKAGE: Build-StandaloneWindows
             
