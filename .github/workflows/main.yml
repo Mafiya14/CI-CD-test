@@ -50,13 +50,13 @@ jobs:
       - name: build
         uses: game-ci/unity-builder@v4
         with:
-        targetPlatform: ${{ matrix.targetPlatform }}
+          targetPlatform: ${{ matrix.targetPlatform }}
     # Output
       - name: output
         uses: actions/upload-artifact@v4
         with:
-        name: Build-${{ matrix.targetPlatform }}
-        path: build/${{ matrix.targetPlatform }}
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
   # Upload to itch.io
   UploadToItchIo:
     name: to itch
