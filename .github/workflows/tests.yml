@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: Test-Results
-          path: reports/test-results
+          path: reports/test-results/playmode-results.xml
       #Test Report
       - name: Test Report
         uses: phoenix-actions/test-reporting@v8
