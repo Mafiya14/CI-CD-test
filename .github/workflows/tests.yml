@@ -33,6 +33,7 @@ jobs:
      #      testMode: PlayMode
       - name: Run .NET Tests and Generate TRX File
         run: dotnet test --logger "trx;LogFileName=test-results.trx"
+        working-directory: </Tests.csproj>
       #Upload Test Result
       - name: Upload Test Result
         uses: actions/upload-artifact@v4
